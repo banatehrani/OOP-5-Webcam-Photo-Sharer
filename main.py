@@ -40,7 +40,10 @@ class ImageScreen(Screen):
         self.ids.link.text = self.url
 
     def copy_link(self):
-        Clipboard.copy(self.url)
+        try:
+            Clipboard.copy(self.url)
+        except:
+            self.ids.link.text = "Create a Link First"
 
 
 class RootWidget(ScreenManager):
