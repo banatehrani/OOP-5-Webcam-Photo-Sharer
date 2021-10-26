@@ -35,6 +35,7 @@ class CameraScreen(Screen):
 
 class ImageScreen(Screen):
     link_message = "Create a Link First"
+
     def create_link(self):
         """Accesses the photo filepath, uploads it to the web,
         and inserts the link in the label widget"""
