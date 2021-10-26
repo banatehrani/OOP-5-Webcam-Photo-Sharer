@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
+from kivy.core.clipboard import Clipboard
 import time
 
 from filesharer import FileSharer
@@ -34,9 +35,12 @@ class ImageScreen(Screen):
         """Accesses the photo filepath, uploads it to the web,
         and inserts the link in the label widget"""
         file_path = App.get_running_app().root.ids.camera_screen.filepath
-        fileshare = FileSharer(filepath = file_path)
-        url = fileshare.share()
-        self.ids.link.text = url
+        fileshare = FileSharer(filepath=file_path)
+        self.url = fileshare.share()
+        self.ids.link.text = self.url
+
+    def copy_link(self):
+        Clipboard.copy(self.url)
 
 
 class RootWidget(ScreenManager):
